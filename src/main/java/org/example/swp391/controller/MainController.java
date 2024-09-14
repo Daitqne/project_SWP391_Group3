@@ -9,4 +9,9 @@ public class MainController {
     public String test(){
         return "ex";
     }
+
+    @GetMapping("/main")
+    public String abcd(){
+        return "ex";
+    }
 }
