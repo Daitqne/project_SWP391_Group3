@@ -14,4 +14,8 @@ public class MainController {
     public String abcd(){
         return "ex";
     }
+
+    private void hihi(){
+        System.out.println("hihi");
+    }
 }
