@@ -7,11 +7,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class MainController {
     @GetMapping()
     public String test(){
-        return "ex";
+        return "login";
     }
 
-    @GetMapping("/main")
-    public String abcd(){
-        return "ex";
+    @GetMapping("/ok")
+    public String ok(){
+        return "ok";
+    }
+    @GetMapping("/not")
+    public String not(){
+        return "not";
     }
 }
