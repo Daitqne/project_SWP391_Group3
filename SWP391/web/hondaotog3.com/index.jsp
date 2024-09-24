@@ -598,6 +598,8 @@
                                 <a href="tin-tuc-481806t.jsp" title="Tin tức">Tin tức</a>
                     </li><li class="">
                                 <a href="lien-he.jsp" title="Liên hệ">Liên hệ</a>
+                    </li><li class="">
+                                <a href="signup.jsp" title="Liên hệ">Đăng kí</a>
                     </li>
             </ul></section>
     

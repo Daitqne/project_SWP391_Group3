@@ -102,7 +102,7 @@
             <div class="modal-body">
                 <section>
                     <div class="container">
-                        <form action="authen?action=signup" method="POST">
+                        <form action="signup" method="POST">
                             <div class="form-group">
                                 <input type="text" id="name" placeholder="Họ và tên" name="fullName" required>
                             </div>
@@ -114,6 +114,7 @@
                             </div>
                             <div class="form-group">
                                 <input type="password" id="pwd" placeholder="Mật khẩu" name="password" required>
+                                <span id="pwd-error" style="color:red;"></span>
                             </div>
                             <div class="form-group">
                                 <input type="password" id="repassword" placeholder="Nhập lại mật khẩu" name="repassword" required>
@@ -133,5 +134,18 @@
                 </section>
             </div>
         </div>
+        <script>
+            document.getElementById('pwd').addEventListener('input', function () {
+                const password = this.value;
+                const errorMsg = document.getElementById('pwd-error');
+                const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+                if (!regex.test(password)) {
+                    errorMsg.textContent = "Mật khẩu phải có ít nhất 8 ký tự, bao gồm chữ hoa, chữ thường, số, và ký tự đặc biệt.";
+                } else {
+                    errorMsg.textContent = "";
+                }
+            });
+        </script>
+
     </body>
 </html>
