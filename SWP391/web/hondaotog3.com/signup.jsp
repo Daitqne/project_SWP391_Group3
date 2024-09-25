@@ -104,13 +104,18 @@
                     <div class="container">
                         <form action="signup" method="POST">
                             <div class="form-group">
-                                <input type="text" id="name" placeholder="Họ và tên" name="Username" required>
+                                <input type="text" id="firstname" placeholder="Họ" name="Firstname" required>
+                                
+                            </div>
+                            <div class="form-group">
+                                
+                                <input type="text" id="lastname" placeholder="Tên" name="Lastname" required>
                             </div>
                             <div class="form-group">
                                 <input type="email" id="email" placeholder="Email" name="email" required>
                             </div>
                             <div class="form-group">
-                                <input type="text" id="mobile" placeholder="Số điện thoại" name="mobile" required>
+                                <input type="text" id="phone" placeholder="Số điện thoại" name="phone" required>
                             </div>
                             <div class="form-group">
                                 <input type="password" id="pwd" placeholder="Mật khẩu" name="password" required>
@@ -118,12 +123,6 @@
                             </div>
                             <div class="form-group">
                                 <input type="password" id="repassword" placeholder="Nhập lại mật khẩu" name="repassword" required>
-                            </div>
-                            <div class="gender-group">
-                                <label>Giới tính</label>
-                                <input name="gender" type="radio" value="True" required> Nam
-                                <input name="gender" type="radio" value="False" required> Nữ
-                                
                             </div>
                             <span style="color:red">${notification}</span>
                             <input type="submit" value="Đăng ký" class="btn"/>

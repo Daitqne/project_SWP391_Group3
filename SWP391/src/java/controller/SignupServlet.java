@@ -4,14 +4,15 @@
  */
 package controller;
 
-import dao.AccountDAO;
+import dao.CustomerDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import model.Account;
+import java.util.Date;
+import model.Customer;
 
 /**
  *
@@ -71,30 +72,42 @@ public class SignupServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String fullName = request.getParameter("Username");
+        String firstName = request.getParameter("Firstname");
+        String lastName = request.getParameter("Lastname");
         String email = request.getParameter("email");
-        String mobile = request.getParameter("mobile");
+        String mobile = request.getParameter("phone");
         String password = request.getParameter("password");
         String repassword = request.getParameter("repassword");
-        boolean gender = Boolean.parseBoolean(request.getParameter("gender"));
+
         String passwordPattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$";
+
+        // Kiểm tra tính hợp lệ của mật khẩu
         if (!password.matches(passwordPattern)) {
             request.setAttribute("notification", "Mật khẩu phải có ít nhất 8 ký tự, bao gồm chữ hoa, chữ thường, số và ký tự đặc biệt.");
-            request.getRequestDispatcher("/hondaotog3.com/signup.jsp").forward(request, response);
+            request.getRequestDispatcher("signup.jsp").forward(request, response);
+            return;
         }
+
         // Kiểm tra mật khẩu và nhập lại mật khẩu
         if (!password.equals(repassword)) {
             request.setAttribute("notification", "Mật khẩu không khớp!");
-            request.getRequestDispatcher("/hondaotog3.com/signup.jsp").forward(request, response);
+            request.getRequestDispatcher("signup.jsp").forward(request, response);
+            return;
         }
 
-        Account account = new Account(0, fullName, password, "", null, email, fullName, gender, "", "", mobile, "", "Active");
-        AccountDAO dao = new AccountDAO();
-        boolean result = dao.registerAccount(account);
+        // Tạo đối tượng Customer với ngày tạo và ngày cập nhật
+        Date now = new Date();
+        Customer cus = new Customer(0, 0, firstName, lastName, mobile, email, "", now, now, null);
+
+        // Đăng ký tài khoản qua DAO
+        CustomerDAO dao = new CustomerDAO();
+        boolean result = dao.registerAccount(cus);
 
         if (result) {
+            // Đăng ký thành công, chuyển hướng tới trang đăng nhập
             response.sendRedirect("login");
         } else {
+            // Đăng ký thất bại, gửi thông báo lỗi
             request.setAttribute("notification", "Đăng ký không thành công!");
             request.getRequestDispatcher("signup.jsp").forward(request, response);
         }
