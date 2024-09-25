@@ -104,7 +104,7 @@
                     <div class="container">
                         <form action="signup" method="POST">
                             <div class="form-group">
-                                <input type="text" id="name" placeholder="Họ và tên" name="fullName" required>
+                                <input type="text" id="name" placeholder="Họ và tên" name="Username" required>
                             </div>
                             <div class="form-group">
                                 <input type="email" id="email" placeholder="Email" name="email" required>
@@ -123,9 +123,10 @@
                                 <label>Giới tính</label>
                                 <input name="gender" type="radio" value="True" required> Nam
                                 <input name="gender" type="radio" value="False" required> Nữ
-                                <span style="color:red">${notification}</span>
+                                
                             </div>
-                            <button type="submit" class="btn">Đăng ký</button>
+                            <span style="color:red">${notification}</span>
+                            <input type="submit" value="Đăng ký" class="btn"/>
                         </form>
                         <div class="modal-footer">
                             <a data-toggle="modal" data-dismiss="modal" data-target="#loginModal" href="authen?action=login">Quay lại đăng nhập</a>
@@ -140,7 +141,7 @@
                 const errorMsg = document.getElementById('pwd-error');
                 const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
                 if (!regex.test(password)) {
-                    errorMsg.textContent = "Mật khẩu phải có ít nhất 8 ký tự, bao gồm chữ hoa, chữ thường, số, và ký tự đặc biệt.";
+                    errorMsg.textContent = "Mật khẩu phải có ít nhất 8 ký tự, bao gồm chữ hoa, chữ thường, số và ký tự đặc biệt.";
                 } else {
                     errorMsg.textContent = "";
                 }

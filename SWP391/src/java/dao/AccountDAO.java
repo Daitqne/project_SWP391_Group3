@@ -17,10 +17,10 @@ public class AccountDAO extends DBContext implements IAccount{
 
     @Override
     public boolean registerAccount(Account account) {
-        String sql = "INSERT INTO Accounts (Full_Name, Email, Phone_Number, Password, Gender, Status) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Accounts (Username, Email, Phone_Number, Password, Gender, Status) VALUES (?, ?, ?, ?, ?, 1)";
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setString(1, account.getFull_Name());
+            ps.setString(1, account.getUsername());
             ps.setString(2, account.getEmail());
             ps.setString(3, account.getPhone_Number());
             ps.setString(4, account.getPassword());
