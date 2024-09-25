@@ -57,7 +57,7 @@ public class SignupServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        request.getRequestDispatcher("/hondaotog3.com/signup.jsp").forward(request, response);
     }
 
     /**
@@ -71,7 +71,7 @@ public class SignupServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String fullName = request.getParameter("fullName");
+        String fullName = request.getParameter("Username");
         String email = request.getParameter("email");
         String mobile = request.getParameter("mobile");
         String password = request.getParameter("password");
@@ -79,15 +79,13 @@ public class SignupServlet extends HttpServlet {
         boolean gender = Boolean.parseBoolean(request.getParameter("gender"));
         String passwordPattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$";
         if (!password.matches(passwordPattern)) {
-            request.setAttribute("notification", "Mật khẩu phải có ít nhất 8 ký tự, bao gồm chữ hoa, chữ thường, số, và ký tự đặc biệt.");
-            request.getRequestDispatcher("signup.jsp").forward(request, response);
-            return;
+            request.setAttribute("notification", "Mật khẩu phải có ít nhất 8 ký tự, bao gồm chữ hoa, chữ thường, số và ký tự đặc biệt.");
+            request.getRequestDispatcher("/hondaotog3.com/signup.jsp").forward(request, response);
         }
         // Kiểm tra mật khẩu và nhập lại mật khẩu
         if (!password.equals(repassword)) {
             request.setAttribute("notification", "Mật khẩu không khớp!");
-            request.getRequestDispatcher("signup.jsp").forward(request, response);
-            return;
+            request.getRequestDispatcher("/hondaotog3.com/signup.jsp").forward(request, response);
         }
 
         Account account = new Account(0, fullName, password, "", null, email, fullName, gender, "", "", mobile, "", "Active");
@@ -100,6 +98,7 @@ public class SignupServlet extends HttpServlet {
             request.setAttribute("notification", "Đăng ký không thành công!");
             request.getRequestDispatcher("signup.jsp").forward(request, response);
         }
+            
     }
 
     /**
