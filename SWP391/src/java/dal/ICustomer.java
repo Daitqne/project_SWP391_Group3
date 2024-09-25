@@ -4,9 +4,9 @@
  */
 package dal;
 
-import model.Account;
+import model.Customer;
 
-public interface IAccount {
+public interface ICustomer {
     
-    boolean registerAccount(Account account);
+    boolean registerAccount(Customer cus);
 }
