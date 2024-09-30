@@ -72,8 +72,7 @@ public class SignupServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String firstName = request.getParameter("Firstname");
-        String lastName = request.getParameter("Lastname");
+        String userName = request.getParameter("username");
         String email = request.getParameter("email");
         String mobile = request.getParameter("phone");
         String password = request.getParameter("password");
@@ -97,7 +96,7 @@ public class SignupServlet extends HttpServlet {
 
         // Tạo đối tượng Customer với ngày tạo và ngày cập nhật
         Date now = new Date();
-        Customer cus = new Customer(0, 0, firstName, lastName, mobile, email, "", now, now, null);
+        Customer cus = new Customer(0, 0, userName, mobile, email, password, now, now, now);
 
         // Đăng ký tài khoản qua DAO
         CustomerDAO dao = new CustomerDAO();

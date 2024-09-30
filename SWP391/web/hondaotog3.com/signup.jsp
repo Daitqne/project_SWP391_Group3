@@ -104,12 +104,7 @@
                     <div class="container">
                         <form action="signup" method="POST">
                             <div class="form-group">
-                                <input type="text" id="firstname" placeholder="Họ" name="Firstname" required>
-                                
-                            </div>
-                            <div class="form-group">
-                                
-                                <input type="text" id="lastname" placeholder="Tên" name="Lastname" required>
+                                <input type="text" id="username" placeholder="Họ và Tên" name="username" required>                              
                             </div>
                             <div class="form-group">
                                 <input type="email" id="email" placeholder="Email" name="email" required>
