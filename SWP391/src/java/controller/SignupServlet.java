@@ -4,47 +4,19 @@
  */
 package controller;
 
-import dao.CustomerDAO;
+import dao.UserDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.Date;
-import model.Customer;
+import model.User;
 
 /**
  *
  * @author DUC MINH
  */
 public class SignupServlet extends HttpServlet {
-
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet SignupServlet</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet SignupServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -74,7 +46,7 @@ public class SignupServlet extends HttpServlet {
             throws ServletException, IOException {
         String userName = request.getParameter("username");
         String email = request.getParameter("email");
-        String mobile = request.getParameter("phone");
+        String phone = request.getParameter("phone");
         String password = request.getParameter("password");
         String repassword = request.getParameter("repassword");
 
@@ -83,32 +55,30 @@ public class SignupServlet extends HttpServlet {
         // Kiểm tra tính hợp lệ của mật khẩu
         if (!password.matches(passwordPattern)) {
             request.setAttribute("notification", "Mật khẩu phải có ít nhất 8 ký tự, bao gồm chữ hoa, chữ thường, số và ký tự đặc biệt.");
-            request.getRequestDispatcher("signup.jsp").forward(request, response);
+            request.getRequestDispatcher("/hondaotog3.com/signup.jsp").forward(request, response);
             return;
         }
 
         // Kiểm tra mật khẩu và nhập lại mật khẩu
         if (!password.equals(repassword)) {
             request.setAttribute("notification", "Mật khẩu không khớp!");
-            request.getRequestDispatcher("signup.jsp").forward(request, response);
+            request.getRequestDispatcher("/hondaotog3.com/signup.jsp").forward(request, response);
             return;
         }
-
-        // Tạo đối tượng Customer với ngày tạo và ngày cập nhật
-        Date now = new Date();
-        Customer cus = new Customer(0, 0, userName, mobile, email, password, now, now, now);
+        User user = new User(0, userName, password, phone, 0, email, phone);
 
         // Đăng ký tài khoản qua DAO
-        CustomerDAO dao = new CustomerDAO();
-        boolean result = dao.registerAccount(cus);
+        UserDAO dao = new UserDAO();
+        boolean result = dao.registerAccount(user);
 
         if (result) {
             // Đăng ký thành công, chuyển hướng tới trang đăng nhập
-            response.sendRedirect("login");
+            //response.sendRedirect("login");
+            request.getRequestDispatcher("/hondaotog3.com/index.jsp").forward(request, response);
         } else {
             // Đăng ký thất bại, gửi thông báo lỗi
             request.setAttribute("notification", "Đăng ký không thành công!");
-            request.getRequestDispatcher("signup.jsp").forward(request, response);
+            request.getRequestDispatcher("/hondaotog3.com/signup.jsp").forward(request, response);
         }
             
     }

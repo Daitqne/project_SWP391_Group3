@@ -4,9 +4,12 @@
  */
 package dal;
 
-import model.Customer;
+import model.User;
 
-public interface ICustomer {
-    
-    
+/**
+ *
+ * @author DUC MINH
+ */
+public interface IUser {
+    boolean registerAccount(User user);
 }

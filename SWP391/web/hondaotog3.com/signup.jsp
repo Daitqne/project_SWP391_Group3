@@ -104,13 +104,13 @@
                     <div class="container">
                         <form action="signup" method="POST">
                             <div class="form-group">
-                                <input type="text" id="username" placeholder="Họ và Tên" name="username" required>                              
+                                <input type="text" id="username" placeholder="Họ và Tên" name="username" value="${param.username != null ? param.username : ''}" required>                              
                             </div>
                             <div class="form-group">
-                                <input type="email" id="email" placeholder="Email" name="email" required>
+                                <input type="email" id="email" placeholder="Email" name="email" value="${param.email != null ? param.email : ''}" required>
                             </div>
                             <div class="form-group">
-                                <input type="text" id="phone" placeholder="Số điện thoại" name="phone" required>
+                                <input type="text" id="phone" placeholder="Số điện thoại" name="phone" value="${param.phone != null ? param.phone : ''}" required>
                             </div>
                             <div class="form-group">
                                 <input type="password" id="pwd" placeholder="Mật khẩu" name="password" required>

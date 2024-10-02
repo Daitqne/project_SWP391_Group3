@@ -10,13 +10,14 @@ import java.util.Date;
  *
  * @author DUC MINH
  */
+// viet ham add kieu tra ve la boolean
+// if()  
+
 public class Customer {
     int customer_id;
     int user_id;
     String user_name;
     String password;
-    String phone;
-    String email;
     String address;
     Date created_at;
     Date update_at;
@@ -25,13 +26,11 @@ public class Customer {
     public Customer() {
     }
 
-    public Customer(int customer_id, int user_id, String user_name, String phone, String email, String address, Date created_at, Date update_at, Date last_login) {
+    public Customer(int customer_id, int user_id, String user_name, String address, Date created_at, Date update_at, Date last_login) {
         this.customer_id = customer_id;
         this.user_id = user_id;
         this.user_name = user_name;
         this.password = password;
-        this.phone = phone;
-        this.email = email;
         this.address = address;
         this.created_at = created_at;
         this.update_at = update_at;
@@ -68,24 +67,6 @@ public class Customer {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-    
-    
-    
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public String getAddress() {
